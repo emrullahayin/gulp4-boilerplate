@@ -1,15 +1,18 @@
 const gulp = require("gulp"),
+  autoprefixer = require("gulp-autoprefixer"),
+  async = require("async"),
   browserSync = require("browser-sync").create(),
-  sass = require("gulp-sass"),
-  del = require("del"),
-  panini = require("panini"),
-  sourcemaps = require("gulp-sourcemaps"),
-  imagemin = require("gulp-imagemin"),
   cache = require("gulp-cache"),
   concat = require("gulp-concat"),
-  minify = require("gulp-minify"),
+  consolidate = require("gulp-consolidate"),
   cssnano = require("gulp-cssnano"),
-  autoprefixer = require("gulp-autoprefixer");
+  del = require("del"),
+  iconfont = require("gulp-iconfont"),
+  imagemin = require("gulp-imagemin"),
+  minify = require("gulp-minify"),
+  panini = require("panini"),
+  sass = require("gulp-sass"),
+  sourcemaps = require("gulp-sourcemaps");
 
 var reload = browserSync.reload;
 
@@ -126,6 +129,37 @@ async function cleanDist() {
   return del.sync("dist");
 }
 
+async function iconFontTask(done) {
+  var iconStream = gulp
+    .src(["assets/icons/*.svg"])
+    .pipe(iconfont({ fontName: "myfont" }));
+
+  return async.parallel(
+    [
+      function handleGlyphs(cb) {
+        iconStream.on("glyphs", function(glyphs, options) {
+          gulp
+            .src("templates/myfont.css")
+            .pipe(
+              consolidate("lodash", {
+                glyphs: glyphs,
+                fontName: "myfont",
+                fontPath: "../fonts/",
+                className: "s"
+              })
+            )
+            .pipe(gulp.dest("www/css/"))
+            .on("finish", cb);
+        });
+      },
+      function handleFonts(cb) {
+        iconStream.pipe(gulp.dest("www/fonts/")).on("finish", cb);
+      }
+    ],
+    done
+  );
+}
+
 // exports.css = css;
 // exports.compileHtml = compileHtml;
 // exports.resetPages = resetPages;
@@ -135,6 +169,7 @@ async function cleanDist() {
 // exports.font = font;
 // exports.scripts = scripts;
 // exports.cleanDist = cleanDist;
+// exports.iconFontTask = iconFontTask;
 
 // ------------ Build Sequence -------------
 exports.default = gulp.series(
