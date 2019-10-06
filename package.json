@@ -1,0 +1,31 @@
+{
+  "name": "gulp-boilerplate",
+  "version": "1.0.0",
+  "description": "Gulp Frontend Starter Kit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emrullahayin/gulp-boilerplate.git"
+  },
+  "keywords": [
+    "boilerplate",
+    "staterkit",
+    "frontend",
+    "gulp",
+    "javascript",
+    "svg",
+    "css"
+  ],
+  "author": "Emrullah Ayın",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emrullahayin/gulp-boilerplate/issues"
+  },
+  "homepage": "https://github.com/emrullahayin/gulp-boilerplate#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
