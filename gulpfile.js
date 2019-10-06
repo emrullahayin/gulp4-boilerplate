@@ -1,5 +1,12 @@
-function defaultTask(cb){
+const {parallel} = require("gulp");
+
+function javascript(cb) {
     cb();
 }
 
-exports.default = defaultTask;
+function css(cb){
+    cb();
+}
+
+
+exports.default = series(javascript,css);
