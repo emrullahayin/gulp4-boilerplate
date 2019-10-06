@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/_home.scss"],"names":[],"mappings":"AAAA,MACI,oBAAa,AAAb,YAAa,CAAA,AAGjB,MACI,YAAa,CAAA","file":"main.min.css","sourcesContent":[".flex {\r\n    display: flex;\r\n}\r\n\r\n.grid {\r\n    display: grid;\r\n}"]}
