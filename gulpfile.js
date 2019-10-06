@@ -1,13 +1,12 @@
 const gulp = require("gulp"),
   autoprefixer = require("gulp-autoprefixer"),
-  async = require("async"),
   browserSync = require("browser-sync").create(),
   cache = require("gulp-cache"),
   concat = require("gulp-concat"),
-  consolidate = require("gulp-consolidate"),
   cssnano = require("gulp-cssnano"),
   del = require("del"),
   iconfont = require("gulp-iconfont"),
+  iconfontCss = require("gulp-iconfont-css"),
   imagemin = require("gulp-imagemin"),
   minify = require("gulp-minify"),
   panini = require("panini"),
@@ -15,6 +14,7 @@ const gulp = require("gulp"),
   sourcemaps = require("gulp-sourcemaps");
 
 var reload = browserSync.reload;
+var fontName = "Icons";
 
 // ------------ Development Tasks -------------
 // Compile Sass into CSS
@@ -70,6 +70,7 @@ function watch() {
 
   gulp.watch(["src/assets/js/**/*.js"], scripts).on("change", reload);
   gulp.watch(["src/assets/scss/**/*"], styles).on("change", reload);
+  gulp.watch(["src/assets/img/icons/*.svg"], iconFonts);
   gulp.watch(["src/assets/img/**/*"], images);
   gulp.watch(["src/assets/video/**/*"], media);
   gulp
@@ -129,35 +130,27 @@ async function cleanDist() {
   return del.sync("dist");
 }
 
-async function iconFontTask(done) {
-  var iconStream = gulp
-    .src(["assets/icons/*.svg"])
-    .pipe(iconfont({ fontName: "myfont" }));
-
-  return async.parallel(
-    [
-      function handleGlyphs(cb) {
-        iconStream.on("glyphs", function(glyphs, options) {
-          gulp
-            .src("templates/myfont.css")
-            .pipe(
-              consolidate("lodash", {
-                glyphs: glyphs,
-                fontName: "myfont",
-                fontPath: "../fonts/",
-                className: "s"
-              })
-            )
-            .pipe(gulp.dest("www/css/"))
-            .on("finish", cb);
-        });
-      },
-      function handleFonts(cb) {
-        iconStream.pipe(gulp.dest("www/fonts/")).on("finish", cb);
-      }
-    ],
-    done
-  );
+async function iconFonts() {
+  return gulp
+    .src(["src/assets/img/icons/*.svg"])
+    .pipe(
+      iconfontCss({
+        fontName: fontName,
+        cssClass: "icon",
+        path: "src/assets/scss/abstracts/_icons.scss",
+        targetPath: "../../../src/assets/scss/base/_icons.scss",
+        fontPath: "../fonts/"
+      })
+    )
+    .pipe(
+      iconfont({
+        fontName: fontName,
+        normalize: true,
+        fontHeight: 1001
+      })
+    )
+    .pipe(gulp.dest("dist/assets/fonts/"))
+    .pipe(browserSync.stream());
 }
 
 // exports.css = css;
@@ -174,6 +167,7 @@ async function iconFontTask(done) {
 // ------------ Build Sequence -------------
 exports.default = gulp.series(
   cleanDist,
+  iconFonts,
   styles,
   font,
   scripts,
@@ -187,6 +181,7 @@ exports.default = gulp.series(
 // Creates production ready assets in dist folder
 exports.build = gulp.series(
   cleanDist,
+  iconFonts,
   styles,
   gulp.parallel(scripts, images, font, compileHtml)
 );

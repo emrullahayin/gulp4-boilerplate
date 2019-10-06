@@ -1,0 +1,164 @@
+@font-face {
+	font-family: "Icons";
+	src: url('../fonts/Icons.eot');
+	src: url('../fonts/Icons.eot?#iefix') format('eot'),
+		url('../fonts/Icons.woff2') format('woff2'),
+		url('../fonts/Icons.woff') format('woff'),
+		url('../fonts/Icons.ttf') format('truetype'),
+		url('../fonts/Icons.svg#Icons') format('svg');
+}
+
+@mixin icon-styles {
+	font-family: "Icons";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	// speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+	text-decoration: none;
+	text-transform: none;
+}
+
+%icon {
+	@include icon-styles;
+}
+
+@function icon-char($filename) {
+	$char: "";
+
+	@if $filename == abacus {
+		$char: "\E001";
+	}
+	@if $filename == bell {
+		$char: "\E002";
+	}
+	@if $filename == blackboard-1 {
+		$char: "\E003";
+	}
+	@if $filename == blackboard {
+		$char: "\E004";
+	}
+	@if $filename == book {
+		$char: "\E005";
+	}
+	@if $filename == books-1 {
+		$char: "\E006";
+	}
+	@if $filename == books {
+		$char: "\E007";
+	}
+	@if $filename == diploma {
+		$char: "\E008";
+	}
+	@if $filename == earth-globe {
+		$char: "\E009";
+	}
+	@if $filename == exam-1 {
+		$char: "\E00A";
+	}
+	@if $filename == exam {
+		$char: "\E00B";
+	}
+	@if $filename == ink {
+		$char: "\E00C";
+	}
+	@if $filename == library {
+		$char: "\E00D";
+	}
+	@if $filename == mortarboard {
+		$char: "\E00E";
+	}
+	@if $filename == open-book {
+		$char: "\E00F";
+	}
+	@if $filename == professor {
+		$char: "\E010";
+	}
+	@if $filename == school-material {
+		$char: "\E011";
+	}
+	@if $filename == student-1 {
+		$char: "\E012";
+	}
+	@if $filename == student {
+		$char: "\E013";
+	}
+	@if $filename == university {
+		$char: "\E014";
+	}
+
+	@return $char;
+}
+
+@mixin icon($filename, $insert: before, $extend: true) {
+	&:#{$insert} {
+		@if $extend {
+			@extend %icon;
+		} @else {
+			@include icon-styles;
+		}
+		content: icon-char($filename);
+	}
+}
+
+.icon-abacus {
+	@include icon(abacus);
+}
+.icon-bell {
+	@include icon(bell);
+}
+.icon-blackboard-1 {
+	@include icon(blackboard-1);
+}
+.icon-blackboard {
+	@include icon(blackboard);
+}
+.icon-book {
+	@include icon(book);
+}
+.icon-books-1 {
+	@include icon(books-1);
+}
+.icon-books {
+	@include icon(books);
+}
+.icon-diploma {
+	@include icon(diploma);
+}
+.icon-earth-globe {
+	@include icon(earth-globe);
+}
+.icon-exam-1 {
+	@include icon(exam-1);
+}
+.icon-exam {
+	@include icon(exam);
+}
+.icon-ink {
+	@include icon(ink);
+}
+.icon-library {
+	@include icon(library);
+}
+.icon-mortarboard {
+	@include icon(mortarboard);
+}
+.icon-open-book {
+	@include icon(open-book);
+}
+.icon-professor {
+	@include icon(professor);
+}
+.icon-school-material {
+	@include icon(school-material);
+}
+.icon-student-1 {
+	@include icon(student-1);
+}
+.icon-student {
+	@include icon(student);
+}
+.icon-university {
+	@include icon(university);
+}
