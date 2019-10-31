@@ -1,4 +1,4 @@
-# Gulp Frontend Starter-kit
+# Gulp Front-end Starter-kit
 
 ## Installing
 
