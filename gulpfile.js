@@ -11,7 +11,9 @@ const gulp = require("gulp"),
   minify = require("gulp-minify"),
   panini = require("panini"),
   sass = require("gulp-sass"),
-  sourcemaps = require("gulp-sourcemaps");
+  sourcemaps = require("gulp-sourcemaps"),
+  htmlmin = require("gulp-htmlmin");
+
 
 var reload = browserSync.reload;
 var fontName = "Icons";
@@ -51,6 +53,7 @@ function compileHtml() {
         data: "src/html/data/"
       })
     )
+    .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest("dist"));
 }
 
