@@ -14,9 +14,9 @@ const gulp = require("gulp"),
   sourcemaps = require("gulp-sourcemaps"),
   htmlmin = require("gulp-htmlmin");
 
-
 var reload = browserSync.reload;
-var fontName = "Icons";
+var fontFileName = "Icons",
+  fontIconClassName = "icon";
 
 // ------------ Development Tasks -------------
 // Compile Sass into CSS
@@ -138,8 +138,8 @@ async function iconFonts() {
     .src(["src/assets/icons/*.svg"])
     .pipe(
       iconfontCss({
-        fontName: fontName,
-        cssClass: "icon",
+        fontName: fontFileName,
+        cssClass: fontIconClassName,
         path: "src/assets/scss/abstracts/_icons.scss",
         targetPath: "../../../src/assets/scss/base/_icons.scss",
         fontPath: "../fonts/"
@@ -147,7 +147,7 @@ async function iconFonts() {
     )
     .pipe(
       iconfont({
-        fontName: fontName,
+        fontName: fontFileName,
         normalize: true,
         fontHeight: 1001
       })
