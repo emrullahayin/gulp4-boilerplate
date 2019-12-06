@@ -135,7 +135,7 @@ async function cleanDist() {
 
 async function iconFonts() {
   return gulp
-    .src(["src/assets/img/icons/*.svg"])
+    .src(["src/assets/icons/*.svg"])
     .pipe(
       iconfontCss({
         fontName: fontName,
