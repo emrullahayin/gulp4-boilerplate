@@ -19,6 +19,7 @@ var fontFileName = "Icons",
   fontIconClassName = "icon";
 
 // ------------ Development Tasks -------------
+
 // Compile Sass into CSS
 function styles() {
   return gulp
@@ -57,6 +58,7 @@ function compileHtml() {
     .pipe(gulp.dest("dist"));
 }
 
+// refresh pages
 function resetPages(done) {
   panini.refresh();
   done();
@@ -83,8 +85,8 @@ function watch() {
 }
 
 // ------------ Optimization Tasks -------------
-// Copies image files to dist
 
+// Copies image files to dist
 function images() {
   return gulp
     .src("src/assets/img/**/*.+(png|jpg|jpeg|gif|svg)")
@@ -155,17 +157,6 @@ async function iconFonts() {
     .pipe(gulp.dest("dist/assets/fonts/"))
     .pipe(browserSync.stream());
 }
-
-// exports.css = css;
-// exports.compileHtml = compileHtml;
-// exports.resetPages = resetPages;
-// exports.watch = watch;
-// exports.images = images;
-// exports.media = media;
-// exports.font = font;
-// exports.scripts = scripts;
-// exports.cleanDist = cleanDist;
-// exports.iconFontTask = iconFontTask;
 
 // ------------ Build Sequence -------------
 exports.default = gulp.series(
