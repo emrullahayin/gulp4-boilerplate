@@ -14,7 +14,7 @@ Clone the repo and include it in a script tag
     git clone https://github.com/emrullahayin/gulp-boilerplate.git
 
 
-- How to run locally?
+### How to run locally?
 
 1. cd into the repo.
 2. Run `yarn` or `npm i` to download dependencies.
