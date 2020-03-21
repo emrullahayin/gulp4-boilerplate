@@ -1,6 +1,6 @@
 {
   "name": "gulp4-boilerplate",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Gulp Frontend Starter Kit",
   "main": "gulpfile.js",
   "scripts": {
