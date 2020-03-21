@@ -1,12 +1,18 @@
 # Gulp 4 - Front-end Starter-kit
 
-## Installing
+## Installation
 
-- Clone this repository:
+### Node
+Install using npm
 
-```
-git clone https://github.com/emrullahayin/gulp-boilerplate.git
-```
+    npm i gulp4-boilerplate
+
+
+### Browser
+Clone the repo and include it in a script tag
+
+    git clone https://github.com/emrullahayin/gulp-boilerplate.git
+
 
 - How to run locally?
 
