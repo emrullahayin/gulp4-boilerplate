@@ -11,7 +11,7 @@ Install using npm
 ### Browser
 Clone the repo and include it in a script tag
 
-    git clone https://github.com/emrullahayin/gulp-boilerplate.git
+    git clone https://github.com/emrullahayin/gulp4-boilerplate.git
 
 
 ### How to run locally?
