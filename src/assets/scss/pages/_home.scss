@@ -1,7 +1,16 @@
 .flex {
-    display: flex;
+  display: flex;
 }
 
 .grid {
-    display: grid;
+  display: grid;
+}
+
+h1 {
+  font-size: 22px;
+  color: turquoise;
+
+  .icon {
+    color: #000;
+  }
 }

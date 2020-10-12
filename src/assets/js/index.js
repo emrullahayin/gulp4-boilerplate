@@ -1,7 +1,17 @@
-var a, b, c;     // Declare 3 variables
-a = 5;           // Assign the value 5 to a
-b = 6;           // Assign the value 6 to b
-c = a + b;       // Assign the sum of a and b to c
-document.getElementsByTagName("body").innerHTML = c;
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+  // Getter
+  get area() {
+    return this.calcArea();
+  }
+  // Method
+  calcArea() {
+    return this.height * this.width;
+  }
+}
+const square = new Rectangle(10, 10);
 
-var x = "a";
+console.log(square.area); // 100
